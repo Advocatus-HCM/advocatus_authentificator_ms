@@ -1,12 +1,18 @@
-from fastapi import FastAPI, Form, Depends
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from typing import Optional, Annotated
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
+from app.controllers import auth, userController
+from app.db.database import init_db
 
 app = FastAPI()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") ##dependencia
 
-@app.post("/token")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"]
+)
 
-def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
-    return form_data
+@app.on_event("startup")
+async def on_startup():
+    await init_db()
+
+app.include_router(auth.router, prefix="", tags=["auth"])
