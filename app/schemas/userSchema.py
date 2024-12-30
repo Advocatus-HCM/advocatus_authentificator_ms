@@ -13,6 +13,7 @@ class UserUpdate(BaseModel):
     
     email: Optional[str] = None
     password: Optional[str] = None
+    role: Optional[str] = None
    
 class UserInDBBase(UserBase):
     id_user: int 

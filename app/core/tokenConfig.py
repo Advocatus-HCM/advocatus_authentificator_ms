@@ -30,7 +30,7 @@ async def get_current_user(token: str = Depends(oauth_2_scheme), db: AsyncSessio
     return user
 
 async def get_user_with_username(db: AsyncSession, username: str):
-    result = await db.execute(select(User).filter(User.username == username))
+    result = await db.execute(select(User).filter(User.email == username))
     user = result.scalars().first()
     return user
 

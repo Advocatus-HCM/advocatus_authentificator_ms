@@ -16,3 +16,4 @@ async def on_startup():
     await init_db()
 
 app.include_router(auth.router, prefix="", tags=["auth"])
+app.include_router(userController.router, prefix="/user", tags=["update user"])
