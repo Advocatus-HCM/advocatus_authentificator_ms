@@ -9,5 +9,4 @@ class User(Base):
     id_user = Column(Integer, primary_key=True, autoincrement=True)
     email = Column(String(100), unique=True, nullable=False, index=True, comment="Correo único")
     password_hash = Column(String(255), nullable=False, comment="Contraseña encriptada")
-    role = Column(Integer, nullable=False, default=1, comment="Rol del usuario")
     

@@ -23,6 +23,7 @@ async def register_user(data:UserCreate, db: AsyncSession):
         user = User(
             email = data.email,
             password_hash = hashed_password,
+            role = data.role
          )
 
         db.add(user)
