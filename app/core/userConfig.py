@@ -14,6 +14,7 @@ async def update_user(user_data, db: AsyncSession):
                detail="User not found"
            )
       
+       user.has_logged_in_before = True
        if user_data.password:
            user.password_hash = get_password_hash(user_data.password)
        if user_data.role:

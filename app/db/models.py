@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Enum, DateTime, func
+from sqlalchemy import Boolean, Column, Integer, String, Date, Enum, DateTime, func
 from sqlalchemy.orm import relationship
 from app.db.base_class import Base
 from datetime import datetime
@@ -10,4 +10,4 @@ class User(Base):
     email = Column(String(100), unique=True, nullable=False, index=True, comment="Correo único")
     password_hash = Column(String(255), nullable=False, comment="Contraseña encriptada")
     role = Column(String(30), nullable=False, default="desactivado", comment="Rol del usuario")
-    
+    has_logged_in_before = Column(Boolean, nullable=False, default=False, comment="Indica si el usuario ha iniciado sesión antes")

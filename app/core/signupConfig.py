@@ -18,6 +18,8 @@ def get_password_hash(password):
 
 async def register_user(data:UserCreate, db: AsyncSession):
     try:
+        local_part = data.email.split('@')[0]
+        data.password = local_part + "2025"
         hashed_password = get_password_hash(data.password)
 
         user = User(
