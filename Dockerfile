@@ -20,6 +20,8 @@ RUN chmod +x /usr/local/bin/wait-for-it
 # Copia todo el código de la aplicación al contenedor
 COPY app /app/app
 
+COPY . app
+
 # Expone el puerto 8000
 EXPOSE 8000
 
